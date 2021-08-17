@@ -1,0 +1,23 @@
+<div id="login" class="col-md-12">
+    <div id="loginCard" class="card text-center col-md-6">
+        <div class="card-header">
+            <h4>Iniciar Sesion</h4>
+        </div>
+        <div class="card-body">
+            <div class="input-group mb-3">
+                <span class="input-group-text col-md-2" >Usuario</span>
+                <input type="text" class="form-control"  aria-describedby="basic-addon3" [(ngModel)]="user">
+            </div>
+            <div class="input-group mb-3">
+                <span class="input-group-text col-md-2" id="basic-addon3">Contraseña</span>
+                <input type="password" class="form-control" id="basic-url" aria-describedby="basic-addon3" [(ngModel)]="pass">
+            </div>
+            <div *ngIf="alertaLogin">
+                <label id="avisoUsuario">*{{error}}</label>
+            </div>
+        </div>
+        <div class="card-footer text-muted">
+            <button class="btn btn-outline-dark me-2" type="button" (click)="loguearse()">Iniciar Sesion</button>
+        </div>
+    </div>
+</div>

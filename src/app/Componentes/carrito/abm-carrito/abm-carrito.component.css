@@ -1,0 +1,42 @@
+.modal-footer{
+    text-align: center;
+    display: block !important;
+    background-color: #60c4ff;
+}
+
+#btnSalir{
+    margin-right: 10%;
+}
+
+.modal-header{
+    background-color: #60c4ff;
+    text-align: center;
+    display: block !important;
+}
+
+#cardBody{
+    margin: 0px;
+}
+
+#total{
+    text-align: right;
+    padding-right: 4%;
+}
+
+#seccionCompra{
+    margin: 5%;
+}
+
+#labelProductos{
+    text-align: center;
+}
+
+table tr {
+    text-align: center;
+}
+
+.card-header{
+    font-weight: bold;
+}
+
+

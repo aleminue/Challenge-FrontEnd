@@ -1,0 +1,30 @@
+<div class="modal-content">
+    <div class="modal-header">
+        
+        <div class="nombreProducto">
+            <h3>{{producto.nombre}}</h3>
+        </div>
+    </div>
+    <div class="modal-body">
+        <div class="row">
+            <div class="col-sm-6">
+                <div>
+                    <h1> {{producto.descripcion}}</h1>
+                </div>
+            <div class="col-sm-6" >
+                <div class="text-center" >
+                    <img [src]="producto.imagen"
+                        class=" img-thumbnail rounded" >
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <div>
+                <div class="btn-group mr-3" role="group">
+                    <button type="button" class="btn btn-dark mr-5" (click)="cerrar()" title="Atras"><i class="fas fa-backspace"></i></button>
+                    <button type="button" class="btn btn-outline-dark botonEliminar" (click)="eliminar()" title="Eliminar"><i class="fas fa-trash-alt"></i></button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

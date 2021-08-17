@@ -1,0 +1,28 @@
+#btnCarrito{
+    text-align: right;
+}
+
+table tr{
+    text-align: center;
+}
+
+#compraEnCurso{
+    color: #0095c6;
+    font-weight: bold;
+}
+
+#compraTerminada{
+    color: #007400;
+    font-weight: bold;
+}
+
+#separador {
+    background-color: rgba(0, 0, 0, 30%);
+}
+
+#labelCarritos{
+    text-align: center;
+}
+
+
+

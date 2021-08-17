@@ -1,0 +1,14 @@
+.nombreProducto{
+    margin:0px auto;
+    color: white;
+    text-transform: uppercase;
+}
+
+.container h5{
+    text-transform: uppercase;
+}
+
+.botonEliminar{
+    border-top-left-radius: 4px !important;
+    border-bottom-left-radius: 4px !important;
+}

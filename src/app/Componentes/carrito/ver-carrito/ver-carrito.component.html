@@ -1,0 +1,44 @@
+<div class="modal-content">
+    <div class="modal-header">
+        <h4 class="modal-title">Carrito Nº {{carrito.idCarrito}}</h4>
+    </div>
+    <div class="modal-body">
+        <label>Estado :</label>
+        <h2>{{carrito.estado}}</h2>
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <td>Nombre</td>
+                    <td>Descripcion</td>
+                    <td>Precio Unitario</td>
+                    <td>Cantidad</td>
+                    <td>Precio Total</td>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- con el ngFor recorremos el array de carritos y vamos llenando la tabla, el indice nos indica la posicion del carrito en la lista
+                        lo usamos para indicar el numero de carritos que tiene el cliente -->
+                <tr *ngFor="let detalle of carrito.detallesCarrito">
+                    <td>{{detalle.producto.nombre}}</td>
+                    <td>{{detalle.producto.descripcion}}</td>
+                    <td>{{detalle.producto.precio}}</td>
+                    <td>{{detalle.cantidadProducto}}</td>
+                    <td>{{detalle.totalProducto}}</td>
+                </tr>
+            </tbody>
+            <tfoot>
+                <tr>
+                    <td id="total" colspan="4">TOTAL:</td>
+                    <td>{{carrito.precioTotal}}</td>
+                </tr>
+            </tfoot>
+        </table>
+    </div>
+    <div class="modal-footer">
+        <div>
+            <button id="btnSalir" type="button" class="btn btn-dark  " (click)=cerrar() title="Atras"><i
+                    class="fas fa-backspace"></i></button>
+        </div>
+    </div>
+</div>
+

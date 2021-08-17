@@ -1,0 +1,103 @@
+<div class="modal-content">
+    <div class="modal-header">
+        <h4 class="modal-title">{{titulo}}</h4>
+    </div>
+    <div class="modal-body">
+        <div class="card mb-3">
+            <div class="card-header">
+                Agregar Productos
+            </div>
+            <div id="seccionCompra" class="row mb-6 ">
+                <div class="col-md-8">
+                    <!-- se despliega un select que trae el producto a medida que se va escribiendo el nombre
+                    searchKeyword filtra por le nombre del atributo que le pasess -->
+                    <ng-autocomplete [data]="productos" [searchKeyword]="nombre" [itemTemplate]="listaProductos"
+                        [(ngModel)]="productoSeleccionado" [notFoundTemplate]="ningunProducto"
+                        placeholder="Ingrese el Nombre del Producto">
+                    </ng-autocomplete>
+
+                    <!-- devuelve la lista de productos que coinciden con el filtro de arriba (searchKeyboard) -->
+                    <ng-template #listaProductos let-producto>
+                        <!-- aca podes modelar la informacion a gusto, en este caso yo solo puse el nombre y el precio del producto
+                        pero podria poner la descripcion tambien si se quisiera -->
+                        <div class="row col-md-12">
+                            <div class="col-md-8">
+                                <a>
+                                    <span [innerHTML]="producto.nombre"></span>
+                                </a>   
+                            </div>
+                            <div class="col-md-4">
+                                <a>
+                                    $<span [innerHTML]="producto.precio"></span>
+                                </a>
+                            </div>
+                        </div>
+                    </ng-template>
+
+                    <!-- cuando ningun producto coincide con el filtro de arriba (searchKeyboard), muestra el mensaje -->
+                    <ng-template #ningunProducto let-noProducto>
+                        <a>
+                            <span>No Hay Coincidencias</span>
+                        </a>
+                    </ng-template>
+
+                </div>
+                <div class="col-md-2">
+                    <input type="number" min="0" class="form-control" placeholder="Cantidad" [(ngModel)]="cantidad">
+                </div>
+                <div class="col-md-2">
+                    <button class="btn btn-outline-dark mr-5" type="button" title="Agregar Al Carrito"
+                        (click)="agregarProducto()"><i class="fas fa-cart-arrow-down"></i></button>
+                </div>
+            </div>
+        </div>
+
+        <div class="card mb-3">
+            <div class="card-header">
+                Productos en Carrito
+            </div>
+            <div id="cardBody" class="row mb-3 col">
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <td>Nombre</td>
+                            <td>Descripcion</td>
+                            <td>Precio Unitario</td>
+                            <td>Cantidad</td>
+                            <td>Precio Total</td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- con el ngFor recorremos el array de carritos y vamos llenando la tabla, el indice nos indica la posicion del carrito en la lista
+                        lo usamos para indicar el numero de carritos que tiene el cliente -->
+                        <tr *ngFor="let detalle of carrito.detallesCarrito">
+                            <td>{{detalle.producto.nombre}}</td>
+                            <td>{{detalle.producto.descripcion}}</td>
+                            <td>{{detalle.producto.precio}}</td>
+                            <td>{{detalle.cantidadProducto}}</td>
+                            <td>{{detalle.totalProducto}}</td>
+                        </tr>
+                    </tbody>
+                    <tfoot *ngIf="hayProductos">
+                        <tr>
+                            <td id="total" colspan="4">TOTAL:</td>
+                            <td>{{precioTotal}}</td>
+                        </tr>
+                    </tfoot>
+                </table>
+                <div id="labelProductos" class="col-md-11" *ngIf="!hayProductos">
+                    <label>No Hay productos En El carrito</label>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <div>
+            <button id="btnSalir" type="button" class="btn btn-dark  " (click)=cerrar() title="Atras"><i
+                    class="fas fa-backspace"></i></button>
+            <button type="button" class="btn btn-success" (click)="guardar()" title="Comprar"><i
+                    class="fas fa-dollar-sign"></i></button>
+        </div>
+    </div>
+
+</div>

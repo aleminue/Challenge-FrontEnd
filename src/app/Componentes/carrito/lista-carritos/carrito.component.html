@@ -1,0 +1,54 @@
+<div class="col-md-12 row">
+    <div class="col-md-8">
+
+    </div>
+    <div id="btnCarrito" class="col-md-4">
+        <button class="btn btn-outline-success me-2" type="button" title="Nuevo Carrito" (click)="nuevoCarrito()"><i
+                class="fas fa-cart-plus"></i></button>
+    </div>
+</div>
+
+<table class="table table-hover">
+    <thead>
+        <tr>
+            <!-- este numero no es el ID sino el numero de carritos de ese dia -->
+            <td>Nº</td>
+            <td>Tipo</td>
+            <td>Fecha Creacion</td>
+            <td>Estado</td>
+            <td>Tiempo Disponible</td>
+        </tr>
+    </thead>
+    <tbody>
+        <!-- con el ngFor recorremos el array de carritosEnCurso y vamos llenando la tabla, el indice nos indica la posicion del carrito en la lista
+        lo usamos para indicar el numero de carritos que tiene el cliente -->
+        <tr *ngFor="let carritoEnCurso of carritosEnCurso; let indice=index" (click)="completarCarrito(carritoEnCurso)"
+            id="#mostrarCarritosEnCurso">
+            <td>{{indice + 1}}</td>
+            <td>{{carritoEnCurso.tipo}}</td>
+            <td>{{carritoEnCurso.fechaCreacion}}</td>
+            <td id="compraEnCurso">{{carritoEnCurso.estado}}</td>
+            <!-- se hace un contador hacia atras con el tiempo disponible que el cliente tiene para terminar su compra o el carrito desaparece
+            en este caso es de 300 segundos = 5 minutos-->
+            <td>
+                <countdown [config]="{ leftTime: 100, format: 'mm:ss' }" (event)="carritoExpirado($event, indice)">
+                </countdown>
+            </td>
+        </tr>
+        <tr *ngIf="hayCarritosEnCurso">
+            <td id="separador" colspan="5"><div></div></td>
+        </tr>
+
+        <!-- este ngFor es para recorrer el array de carritosTerminados y colocarlos en la tabla -->
+        <tr *ngFor="let carritoTerminado of carritosTerminados; let indice=index" (click)="verCarrito(carritoTerminado)">
+            <td>{{indice + 1}}</td>
+            <td>{{carritoTerminado.tipo}}</td>
+            <td>{{carritoTerminado.fechaCreacion}}</td>
+            <td id="compraTerminada">{{carritoTerminado.estado}}</td>
+            <td>-</td>
+        </tr>
+    </tbody>
+</table>
+<div id="labelCarritos" class="col-md-12" *ngIf="!hayCarritos">
+    <label>No Hay Ningun Carrito</label>
+</div>
